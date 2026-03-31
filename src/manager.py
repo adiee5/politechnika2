@@ -53,5 +53,26 @@ class Manager:
             )
 
     def tenant_settlements_of(self, apartment_key, year, month):
-        # TODO
-        return [TenantSettlement()]
+        a=self.apartment_settlement_from(apartment_key, year, month)
+        if a==None:
+            return None # The apartment doesn't exist
+        
+        tenant_count=0
+        for t in self.tenants.values():
+            if t.apartment==apartment_key:
+                tenant_count+=1
+        
+        l=[]
+        for tid, t in self.tenants.items():
+            if t.apartment==apartment_key:
+                l.append(TenantSettlement(
+                    apartment_settlement=apartment_key,
+                    tenant=tid,
+                    month=month,
+                    year=year,
+                    rent_pln=t.rent_pln,
+                    bills_pln=a.total_bills_pln/tenant_count,
+                    total_due_pln=t.rent_pln+a.total_bills_pln/tenant_count,
+                    balance_pln=0
+                ))
+        return l

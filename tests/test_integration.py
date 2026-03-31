@@ -70,7 +70,7 @@ def test_tenant_settlement():
         assert t.rent_pln==manager.tenants[t.tenant].rent_pln
         assert t.bills_pln==\
             manager.apartment_settlement_from('apart-polanka', 2025, 1)\
-            .total_bills_pln//3
+            .total_bills_pln/3
         assert t.total_due_pln==t.rent_pln+t.bills_pln
         # I don't know what's the purpose of the .balance_pln member
 
@@ -134,12 +134,3 @@ def test_tenant_settlement():
 
     assert len(manager.tenant_settlements_of("apart-test2", 2025, 1))==0
     assert manager.tenant_settlements_of("apart-test4", 2025, 1)==None
-    #tenant: str
-    #apartment_settlement: str
-    #month: int
-    #year: int
-    #rent_pln: float
-    #bills_pln: float
-    #total_due_pln: float
-    #balance_pln: float
-
