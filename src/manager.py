@@ -1,4 +1,4 @@
-from src.models import Apartment, Bill, Parameters, Tenant, Transfer, ApartmentSettlement
+from src.models import Apartment, Bill, Parameters, Tenant, Transfer, ApartmentSettlement, TenantSettlement
 
 
 class Manager:
@@ -51,3 +51,7 @@ class Manager:
             total_rent_pln=rent,
             total_due_pln=bills+rent
             )
+
+    def tenant_settlements_of(self, apartment_key, year, month):
+        # TODO
+        return [TenantSettlement()]
