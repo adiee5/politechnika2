@@ -49,4 +49,10 @@ def test_apartment_settlement():
 
     apset2=manager.apartment_settlement_from('apart-polanka', 2025, 2)
 
-    assert apset.total_bills_pln
+    assert apset2.total_bills_pln==0.0
+    assert apset2.apartment==apset.apartment
+    assert apset2.total_rent_pln==apset.total_rent_pln # they should be equal, since they are stil the same apartment
+    assert apset2.total_due_pln==apset2.total_rent_pln
+    assert apset2.year==2025
+
+    assert manager.apartment_settlement_from("uam", 2025, 1)==None

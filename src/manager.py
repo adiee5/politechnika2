@@ -37,6 +37,8 @@ class Manager:
 
     def apartment_settlement_from(self, apartment_key, year, month):
         bills=self.get_apartment_costs(apartment_key, year, month)
+        if bills==None:
+            return None # The apartment doesn't exist
         rent=0
         for tenant in self.tenants.values():
             if tenant.apartment==apartment_key:
