@@ -36,3 +36,17 @@ def test_apartment_costs():
     assert manager.get_apartment_costs('apart-polanka', 2025, 1)==760.0+150.0
     assert manager.get_apartment_costs('apart-polanka', 2025, 2)==0.0
     assert manager.get_apartment_costs('uam', 2025, 1)==None
+
+def test_apartment_settlement():
+    manager = Manager(Parameters())
+
+    apset=manager.apartment_settlement_from('apart-polanka', 2025, 1)
+
+    assert apset.total_due_pln==apset.total_bills_pln+apset.total_rent_pln
+    assert apset.total_bills_pln==760.0+150.0
+    assert apset.total_rent_pln==1400.0+1500.0+1300.0
+    assert apset.apartment=='apart-polanka'
+
+    apset2=manager.apartment_settlement_from('apart-polanka', 2025, 2)
+
+    assert apset.total_bills_pln
